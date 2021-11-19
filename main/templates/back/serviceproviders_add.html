@@ -1,0 +1,96 @@
+{% extends 'back/base.html' %}
+
+{% load static %}
+
+{% block mainblock %}
+
+<!-- Datatables Header -->
+<div class="content-header">
+ <div class="header-section">
+  <h1>
+   <i class="fa fa-table"></i>Service Providers List<br><small>You can add service providers</small>
+  </h1>
+ </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+ <li>Service Providers</li>
+ <li><a href="/panel/serviceproviders/add">Add</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+<!-- Datatables Content -->
+<div class="block full">
+ <div class="block-title">
+  <h2><strong>Add</strong> Service Providers</h2>
+ </div>
+
+
+ <!-- Basic Form Elements Content -->
+ <form action="{% url 'serviceproviders_add' %}" method="post" enctype="multipart/form-data"
+  class="form-horizontal form-bordered">
+  {% csrf_token %}
+  <div class="form-group">
+   <div class="col-md-4">
+    <input type="text" id="spname" name="spname" class="form-control" placeholder="Name of Service Provider">
+   </div>
+   <div class="col-md-4">
+    <input type="text" id="spoccupation" name="spoccupation" class="form-control" placeholder="Occupation">
+   </div>
+   <div class="col-md-4">
+    <input type="text" id="sporganization" name="sporganization" class="form-control" placeholder="Organization">
+   </div>
+
+   
+  </div>
+
+  <div class="form-group">
+
+   <div class="col-md-4">
+    <input type="text" id="spaddress" name="spaddress" class="form-control" placeholder="Physical Address">
+   </div>
+
+   <div class="col-md-4">
+    <input type="text" id="spsuburb" name="spsuburb" class="form-control" placeholder="Suburb">
+   </div>
+
+   <div class="col-md-4">
+    <input type="text" id="spcontact" name="spcontact" class="form-control" placeholder="Contact Number">
+   </div>
+  </div>
+   
+
+ 
+ 
+ 
+  <div class="form-group">
+   <div class="col-md-6">
+    <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="Body text">
+   </div>
+  </div>
+   
+
+ 
+  <div class="form-group">
+   <div class="col-md-12">
+    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+   </div>
+  </div>
+ 
+ 
+ 
+ 
+ </form>
+ <!-- END Basic Form Elements Content -->
+</div>
+<!-- END Datatables Content -->
+
+
+{% endblock %}
+
+{% block footerblock %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+<script>$(function () { TablesDatatables.init(); });</script>
+
+{% endblock %}

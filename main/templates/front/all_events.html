@@ -1,0 +1,36 @@
+{% extends 'front/base.html' %}
+
+{% load static %}
+{% block headblock %}
+  <title>{{site.name}} | All</title>
+{% endblock %}
+
+{% block mainblock %}
+
+<h2 class="py-3">All events this week</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Event Name</th>
+        {% for name in event_name %}
+        <th scope="col">{{name}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Venue</th>
+        {% for venue in event_venue %}
+        <td>{{venue}}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th scope="row">Time</th>
+        {% for time in event_time %}
+        <td>{{time}}</td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

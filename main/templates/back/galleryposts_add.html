@@ -1,0 +1,67 @@
+{% extends 'back/base.html' %}
+
+{% load static %}
+
+{% block mainblock %}
+
+<!-- Datatables Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-table"></i>Add Gallery Posts<br><small>you can add your gallery posts</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Gallery Posts</li>
+    <li><a href="/panel/galleryposts/add/">Add</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Basic Form Elements Block -->
+        <div class="block">
+            <!-- Basic Form Elements Title -->
+            <div class="block-title">
+
+                <h2><strong>Add</strong> Gallery</h2>
+            </div>
+            <!-- END Form Elements Title -->
+
+            <!-- Basic Form Elements Content -->
+            <form action="{% url 'galleryadmin' %}" method="post" enctype="multipart/form-data"
+                class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form %}
+                    <div class="col-md-6">
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-sm btn-primary "><i class="fa fa-angle-right"></i>
+                            Add</button>
+                    </div>
+                </div>
+
+
+
+
+
+            </form>
+            <!-- END Basic Form Elements Content -->
+        </div>
+        <!-- END Basic Form Elements Block -->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footerblock %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+<script>$(function () { TablesDatatables.init(); });</script>
+
+{% endblock %}

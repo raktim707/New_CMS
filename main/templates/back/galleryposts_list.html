@@ -1,0 +1,90 @@
+{% extends 'back/base.html' %}
+
+{% load static %}
+
+{% block mainblock %}
+
+<!-- Datatables Header -->
+<div class="content-header">
+       <div class="header-section">
+              <h1>
+                     <i class="fa fa-table"></i>Gallery Posts List<br><small>you can view, edit or delete your
+                            gallery posts</small>
+              </h1>
+       </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+       <li>Gallery Posts</li>
+       <li><a href="/panel/galleryposts/list">List</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+<!-- Datatables Content -->
+<div class="block full">
+       <div class="block-title">
+              <h2><strong>Gallery Posts</strong> List</h2>
+       </div>
+
+
+       <div class="table-responsive">
+              <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                     <thead>
+                            <tr>
+                                   <th class="text-center">ID</th>
+                                   <th class="text-center">Name</th>
+                                   <th>Image/Video</th>
+                                   <th>Bootstrap Class</th>
+                                   <th class="text-center">Actions</th>
+                            </tr>
+                     </thead>
+                     <tbody>
+
+                            {% for gpost in gposts %}
+                            <tr>
+                                   <td class="text-center">{{gpost.id}}</td>
+
+                                   <td>{{gpost.name}}</td>
+                                   {% if gpost.isImage %}
+                                   <td class="text-center">
+                                          <img style="display: inline-block; width: 50px; height: 50px;"
+                                                 src="/media/{{ gpost.ImageOrVideo }}" alt="avatar" class="img-circle">
+                                   </td>
+                                   {% else %}
+                                   <td class="text-center"><video src="/media/{{ gpost.ImageOrVideo }}"
+                                                 class="w-100 m-2"
+                                                 style="display: inline-block; width: 50px; height: 50px;"></td>
+                                   </video>
+                                   {% endif %}
+
+                                   <td>{{gpost.CssClass}}</td>
+                                   <td class="text-center">
+                                          <div class="btn-group">
+                                                 <a href="{% url 'galleryposts_edit' pk=gpost.id %}"
+                                                        data-toggle="tooltip" title="Edit"
+                                                        class="btn btn-xs btn-default"><i
+                                                               class="fa fa-pencil">Edit</i></a>
+                                                 <a href="{% url 'galleryposts_delete' gpost.id %}"
+                                                        data-toggle="tooltip" title="Delete"
+                                                        class="btn btn-xs btn-danger"><i
+                                                               class="fa fa-times">Delete</i></a>
+                                          </div>
+                                   </td>
+                            </tr>
+                            {% endfor %}
+
+
+                     </tbody>
+              </table>
+       </div>
+</div>
+<!-- END Datatables Content -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+<script>$(function () { TablesDatatables.init(); });</script>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'back/base.html' %}
+
+{% load static %}
+
+{% block mainblock %}
+
+<!-- Datatables Header -->
+<div class="content-header">
+  <div class="header-section">
+    <h1>
+      <i class="fa fa-table"></i>Edit Articles<br><small>you can add, edit and delete your articles!</small>
+    </h1>
+  </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+  <li>Articles</li>
+  <li><a href="/panel/news/edit/{{pk}}">Edit</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- Basic Form Elements Block -->
+    <div class="block">
+      <!-- Basic Form Elements Title -->
+      <div class="block-title">
+
+        <h2><strong>Edit</strong> Articles</h2>
+      </div>
+      <!-- END Form Elements Title -->
+
+      <!-- Basic Form Elements Content -->
+      <form action="{% url 'articles_edit' pk=pk %}" method="post" enctype="multipart/form-data"
+        class="form-horizontal form-bordered">
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="col-md-6">
+            <input type="text" id="articletitle" value="{{articles.name}}" name="articletitle" class="form-control"
+              placeholder="Article Title">
+          </div>
+          <div class="col-md-6">
+            <select id="articlecat" name="articlecat" class="select-chosen" data-placeholder="Choose a Category..."
+              style="width: 250px;">
+
+              <option value="{{articles.catid}}">{{articles.catname}}</option>
+              {% for i in categories %}
+              <option value="{{i.pk}}">{{i.catname}} | {{i.name}}</option>
+              {% endfor %}
+
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <textarea type="text" id="articletextshort" name="articletextshort" rows="5" class="form-control"
+              placeholder="Short text">{{articles.short_txt}}</textarea>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <textarea type="text" id="articletext" name="articletext" rows="5" class="form-control"
+              placeholder="Body text">{{articles.body_text}}</textarea>
+          </div>
+        </div>
+
+        <script>
+          ClassicEditor
+            .create(document.querySelector('#articletext'))
+            .catch(error => {
+              console.error(error);
+            });
+        </script>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="Body text">
+            <br><br />
+          </div>
+          <div class="form-group">
+            <div class="col-md-6">
+              <label for="myvideo">Select Video (optional)</label>
+              <input type="file" id="myvideo" name="myvideo" accept="Video/*" rows="5" class="form-control"
+                placeholder="Select Video">
+            </div>
+            <textarea type="text" id="tag" name="tag" rows="5" class="form-control"
+              placeholder="Tags">{{articles.tag}}</textarea>
+          </div>
+          <div class="col-md-6">
+            <img style="display: inline-block; width: 300px; height: 300px;" src="{{articles.picurl}}">
+          </div>
+          <div class="col-md-6">
+            <video style="display: inline-block; width: 300px; height: 300px;" src="{{articles.vidurl}}"
+              controls></video>
+          </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+          </div>
+        </div>
+
+
+
+
+      </form>
+      <!-- END Basic Form Elements Content -->
+    </div>
+    <!-- END Basic Form Elements Block -->
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footerblock %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+<script>$(function () { TablesDatatables.init(); });</script>
+
+{% endblock %}

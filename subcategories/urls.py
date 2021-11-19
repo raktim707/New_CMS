@@ -1,0 +1,9 @@
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+ url(r'^subcategory/(?P<pk>\d+)/$', views.getsubcategory, name='getcat_list'),
+ url(r'^panel/subcategory/list/$', views.subcat_list, name='subcat_list'),
+ url(r'^panel/subcategory/add/$', views.subcat_add, name='subcat_add'),
+ url(r'^panel/subcategory/del/(?P<pk>\d+)/$', views.subcat_del, name='subcat_del'),
+]

@@ -1,0 +1,393 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+ {% block headblock %}
+ {% endblock %}
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!--===============================================================================================-->
+ <link rel="icon" type="image/png" href="{%static 'front/images/icons/Flavicon-.png' %}" />
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animate/animate.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/vendor/css-hamburgers/hamburgers.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animsition/css/animsition.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
+ <!--===============================================================================================-->
+ <link rel="stylesheet" type="text/css" href="{%static 'front/css/main.css' %}">
+ <!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="{%static 'front/css/css_from_back/css/bootstrap.min.css' %}"> -->
+<!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="{%static 'front/css/css_from_back/css/main.css' %}"> -->
+<!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="{%static 'front/css/css_from_back/css/plugin.css' %}"> -->
+<!--===============================================================================================-->
+<!-- <link rel="stylesheet" type="text/css" href="{%static 'front/css/css_from_back/css/themes.css' %}"> -->
+<!--===============================================================================================-->
+
+</head>
+
+<body class="animsition">
+
+ <!-- Header -->
+ <header>
+  <!-- Header desktop -->
+  <div class="container-menu-desktop">
+   <div class="topbar">
+    <div class="content-topbar h-100 p-rl-30">
+     <div class="align-self-stretch size-w-0 pos-relative m-r-30">
+      <div class="f2-s-1 flex-wr-s-c s-full ab-t-l p-b-2">
+       <span class="text-uppercase cl0 p-r-8">
+        Fun Health Tips: 
+       </span>
+
+       <span class="dis-inline-block cl16 slide100-txt pos-relative size-w-0" data-in="fadeInDown"
+        data-out="fadeOutDown">
+        {% for trending in trending %}
+        <span class="dis-inline-block slide100-txt-item animated visible-false">
+         {{trending.txt}}
+        </span>
+        {% endfor %}
+       </span>
+      </div>
+     </div>
+
+
+     <div class="flex-wr-e-c">
+      <div class="left-topbar">
+        <a href="/events" class="left-topbar-item" >
+          All Events
+        </a>
+          <a href="/survey" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Anonymously participate in our surveys">
+            Surveys
+          </a>
+
+
+       <a href="/about" class="left-topbar-item">
+        About
+       </a>
+
+       <!-- <a href="#" class="left-topbar-item">
+        Contact
+       </a> -->
+
+      <a href="/serviceproviders" class="left-topbar-item">
+        Service Providers
+      </a>
+
+      <a href="/gallery" class="left-topbar-item">
+        Gallery
+      </a>
+
+
+
+       <!-- <a href="#" class="left-topbar-item">
+        Sign up
+       </a> -->
+
+       <a href="/login" class="left-topbar-item">
+        Log in
+       </a>
+
+       <a href="#" class="left-topbar-item"></a>
+      </div>
+
+      <div class="right-topbar p-l-18">
+       <!-- <a href="{{site.fb}}"> -->
+
+        <a href="https://www.nust.na" target="_blank">
+          <span class="fa fa-globe"></span>
+        </a>
+
+         <a href="https://www.facebook.com/NUSTNamibia/" target="_blank">
+        <span class="fab fa-facebook-f"></span>
+       </a>
+
+       <a href="https://twitter.com/NUST_Namibia" target="_blank">
+        <span class="fab fa-twitter"></span>
+       </a>
+
+       
+
+       <a href="https://www.youtube.com/channel/UCw8L0Axttdo8AhezcONlRfw" target="_blank">
+        <span class="fab fa-youtube"></span>
+       </a>
+      </div>
+
+      
+     </div>
+    </div>
+   </div>
+
+
+   <!--  -->
+   <p class="card-text" style="text-align: left; background-color: #fcaf17; padding: 3px; color: #1b2b5d; font-weight: bold" >Latest Event: {{ request.session.ongoing_events }}</p>&nbsp;&nbsp;
+   <div class="wrap-logo no-banner container">
+    <!-- Logo desktop -->
+    <div class="logo">
+     <a href="/"><img src="{{site.picurl}}" alt="LOGO"></a>
+    </div>
+   </div>
+
+   <!--  -->
+   <div class="wrap-main-nav">
+    <div class="main-nav">
+     <!-- Menu desktop -->
+     <nav class="menu-desktop">
+      <a class="logo-stick" href="/">
+       <img src="{{site.picurl}}" alt="LOGO">
+      </a>
+
+      <ul class="main-menu justify-content-center">
+       <li class="main-menu-active">
+        <a href="/">Home</a>
+       </li>
+
+       {% for gg in categories %}
+       {% if gg.count != 0 %}
+       <li class="mega-menu-item">
+        <a href="{% url 'get_cat_list' gg.pk %}">{{gg.name}}</a> <!--<a href="#">{{gg.name}}-->
+
+        <div class="sub-mega-menu">
+         <div class="nav flex-column nav-pills" role="tablist">
+          <a class="nav-link active" data-toggle="pill" href="#" role="tab">All</a>
+          <!-- {% for subcategories in subcategories %} {% if subcategories.catid == gg.pk %}<a class="nav-link" data-toggle="pill" href="#" role="tab">{{subcategories.name}}</a>
+ {% endif %} {% endfor %} -->
+          
+
+          {% for subcategories in subcategories %}
+          {% if subcategories.catid == gg.pk %}
+          <a class="nav-link" href="/subcategory/{{subcategories.pk}}">{{subcategories.name}}</a>
+          {% endif %}
+          {% endfor %}
+          
+         </div>
+
+         <div class="tab-content">
+
+          <div class="tab-pane show active" id="news-0" role="tabpanel">
+           <div class="row">
+
+             
+            {% for hh in articles %}
+            {% if hh.ocatid == gg.pk %}
+            <div class="col-3">
+             <!-- Item post -->
+             <div>
+              <a href="{% url 'article_detail' word=hh.name %}" class="wrap-pic-w hov1 trans-03">
+               <img style="display: inline-block; width: 180px; height: 120px;" src="{{hh.picurl}}" alt="IMG">
+              </a>
+
+              <div class="p-t-10">
+               <h5 class="p-b-5">
+                <a href="{% url 'article_detail' word=hh.name %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+                 {{hh.name}}
+                </a>
+               </h5>
+
+               <span class="cl8">
+                <a href="{% url 'article_detail' word=hh.name %}" class="f1-s-6 cl8 hov-cl10 trans-03">
+                 {{hh.catname}}
+                </a>
+
+                <span class="f1-s-3 m-rl-3">
+                 -
+                </span>
+
+                <span class="f1-s-3">
+                 {{hh.date}}
+                </span>
+               </span>
+              </div>
+             </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+           </div>
+          </div>
+
+
+
+          {% for subcategories2 in subcategories %}
+          <div class="tab-pane" id="{{subcategories2.pk}}" role="tabpanel">
+           <div class="row">
+
+
+
+            {% for hh in articles %}
+            {% if hh.catid == subcategories2.pk %}
+            <div class="col-3">
+              <!-- Item post -->
+              <div>
+                <a href="{% url 'article_detail' word=hh.name %}" class="wrap-pic-w hov1 trans-03">
+                  <img style="display: inline-block; width: 180px; height: 120px;" src="{{hh.picurl}}" alt="IMG">
+                </a>
+            
+                <div class="p-t-10">
+                  <h5 class="p-b-5">
+                    <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+                      {{hh.name}}
+                    </a>
+                  </h5>
+            
+                  <span class="cl8">
+                    <a href="{% url 'article_detail' word=hh.name %}" class="f1-s-6 cl8 hov-cl10 trans-03">
+                      {{hh.catname}}
+                    </a>
+            
+                    <span class="f1-s-3 m-rl-3">
+                      -
+                    </span>
+            
+                    <span class="f1-s-3">
+                      {{hh.date}}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+
+           </div>
+          </div>
+          {% endfor %}
+          
+
+          
+         </div>
+        </div>
+       </li>
+       {% endif %}
+       {% endfor %}
+
+      <li class="main-menu-active">
+        <a href="/articles/all">All Articles</a>
+      </li>
+       
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </header>
+
+{% block mainblock %}
+{% endblock %}
+
+ <!-- Footer -->
+ <footer class=fluid style="width: 100%; min-width: 100%"> 
+  <div class="bg2 p-t-40 p-b-25">
+   <div class="container">
+    <div class="row">
+     
+
+      <div class="col-lg-4 p-b-20">
+
+       <p class="f1-s-1 cl11 p-b-16">
+        <!--Any questions? Call us on (+1) 96 716 6879-->
+        Email us at {{site.tell}}
+       </p>
+
+     </div> 
+
+       
+
+       <div class="col-lg-4 p-b-20">
+
+       <form action="{% url 'news_letter' %}" method="POST">
+         {% csrf_token %}
+        <input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="txt" name="txt" placeholder="Type in your email address" data-toggle="tooltip" data-placement="right" title="Send us your email address to be notified of the latest content that's published on the site">
+        <button type="submit" style="background-color: #fcb017; color: black" class="size-a-20 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">Send</button>
+      </form>
+      
+     </div>
+
+
+
+
+
+     
+     
+</div>
+     
+    </div>
+   </div>
+  
+
+  <div class="bg11">
+   <div class="container size-h-4 flex-c-c p-tb-15">
+    <span class="f1-s-1 cl0 txt-center">
+    
+ © 2021 Namibia University of Science and Technology. All Rights Reserved. | NUST</p>
+      
+    </span>
+   </div>
+  </div>
+ </footer>
+
+ <!-- Back to top -->
+ <div class="btn-back-to-top" id="myBtn">
+  <span class="symbol-btn-back-to-top">
+   <span class="fas fa-angle-up"></span>
+  </span>
+ </div>
+
+ <!-- Modal Video 01-->
+ <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document" data-dismiss="modal">
+   <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+   <div class="wrap-video-mo-01">
+    <div class="video-mo-01">
+
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!--===============================================================================================-->
+ <script src="{%static 'front/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+ <!--===============================================================================================-->
+ <script src="{%static 'front/vendor/animsition/js/animsition.min.js' %}"></script>
+ <!--===============================================================================================-->
+ <script src="{%static 'front/vendor/bootstrap/js/popper.js' %}"></script>
+ <script src="{%static 'front/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+ <!--===============================================================================================-->
+ <script src="{%static 'front/js/main.js' %}"></script>
+
+ <script>
+   $(function () {
+      $('[data-toggle="tooltip"]').tooltip({ trigger: 'manual'}).tooltip('show')
+    })
+ </script>
+
+ <script>
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
+</body>
+
+</html>

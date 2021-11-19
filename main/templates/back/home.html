@@ -1,0 +1,126 @@
+
+{% extends 'back/base.html' %}
+
+{% load static %}
+
+{% block mainblock %}
+
+<!-- Mini Top Stats Row -->
+<div class="row">
+<!-- Widget -->
+ <div class="col-sm-6 col-lg-4"> 
+  <a href="articles/list" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+     <i class="fa fa-file-text"></i>
+    </div>
+    <h3 class="widget-content text-right animation-pullDown">
+     <strong>View All Articles</strong>
+     <br>
+     <!-- <small>NUST</small> -->
+    </h3>
+   </div>
+  </a>
+ </div>
+ <!-- END Widget -->
+
+ <!-- Widget -->
+ <div class="col-sm-6 col-lg-4">
+  <a href="serviceproviders/list" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+     <i class="fa fa-file-text"></i>
+    </div>
+    <h3 class="widget-content text-left animation-pullDown">
+     <strong>View All</strong> 
+     <br>
+      <strong>Service Providers</strong>
+
+    </h3>
+   </div>
+  </a>
+ </div>
+ <!-- END Widget -->
+
+ <!-- Widget -->
+ <div class="col-sm-6 col-lg-4">
+  <a href="/panel/trending" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+     <i class="fa fa-file-text"></i>
+    </div>
+    <h3 class="widget-content text-left animation-pullDown">
+     <strong>View All</strong>
+     <br>
+     <strong>Health Tips</strong>
+ 
+    </h3>
+   </div>
+  </a>
+ </div>
+ <!-- END Widget -->
+
+ 
+
+ <!-- Widget -->
+ <!-- <div class="col-sm-6 col-lg-3">
+  <a href="page_comp_charts.html" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
+     <i class="gi gi-usd"></i>
+    </div>
+    <h3 class="widget-content text-right animation-pullDown">
+     + <strong>250%</strong><br>
+     <small>Performance</small>
+    </h3>
+   </div>
+  </a>
+ </div> -->
+  <!-- END Widget -->
+
+ <!-- Widget -->
+ <!-- <div class="col-sm-6 col-lg-3">
+  <a href="page_ready_inbox.html" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+     <i class="gi gi-envelope"></i>
+    </div>
+    <h3 class="widget-content text-right animation-pullDown">
+     5 <strong>Messages</strong>
+     <small>Support Center</small>
+    </h3>
+   </div>
+  </a>
+ </div> -->
+ <!-- END Widget -->
+
+ <!-- Widget -->
+ <!-- <div class="col-sm-6 col-lg-3">
+  <a href="page_comp_gallery.html" class="widget widget-hover-effect1">
+   <div class="widget-simple">
+    <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
+     <i class="gi gi-picture"></i>
+    </div>
+    <h3 class="widget-content text-right animation-pullDown">
+     +30 <strong>Photos</strong>
+     <small>Gallery</small>
+    </h3>
+   </div>
+  </a>
+ </div> -->
+  <!-- END Widget -->
+ 
+
+</div>
+<!-- END Mini Top Stats Row -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/index.js' %}"></script>
+<script>$(function () { Index.init(); });</script>
+
+{% endblock %}
+
